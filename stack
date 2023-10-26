@@ -69,3 +69,127 @@ public class Generic_Stack<T> {
         }
     }
 }
+
+
+WITH STANDARD JAVA DOCUMENTATION 
+/**
+ * This program demonstrates a generic stack implementation in Java. It allows you
+ * to create a stack of any data type, push elements onto the stack, pop elements from
+ * the stack, peek at the top element, check if the stack is empty, and get the size
+ * of the stack.
+ *
+ * @param <T> The type of elements to be stored in the stack.
+ */
+import java.util.EmptyStackException;
+import java.util.Scanner;
+
+public class GenericStack<T> {
+    private T[] array;
+    private int top;
+    private int capacity;
+
+    /**
+     * Constructs a new generic stack with the specified capacity.
+     *
+     * @param size The capacity of the stack.
+     */
+    public GenericStack(int size) {
+        capacity = size;
+        array = (T[]) new Object[capacity];
+        top = -1;
+    }
+
+    /**
+     * Checks if the stack is empty.
+     *
+     * @return true if the stack is empty, false otherwise.
+     */
+    public boolean isEmpty() {
+        return top == -1;
+    }
+
+    /**
+     * Checks if the stack is full.
+     *
+     * @return true if the stack is full, false otherwise.
+     */
+    public boolean isFull() {
+        return top == capacity - 1;
+    }
+
+    /**
+     * Pushes an item onto the stack.
+     *
+     * @param item The item to be pushed onto the stack.
+     */
+    public void push(T item) {
+        if (isFull()) {
+            System.out.println("Stack is full. Cannot push.");
+            return;
+        }
+        array[++top] = item;
+    }
+
+    /**
+     * Pops and returns the top element from the stack.
+     *
+     * @return The popped element.
+     * @throws EmptyStackException if the stack is empty.
+     */
+    public T pop() {
+        if (isEmpty()) {
+            throw new EmptyStackException();
+        }
+        T item = array[top];
+        array[top] = null;
+        top--;
+        return item;
+    }
+
+    /**
+     * Peeks at the top element of the stack without removing it.
+     *
+     * @return The top element.
+     * @throws EmptyStackException if the stack is empty.
+     */
+    public T peek() {
+        if (isEmpty()) {
+            throw new EmptyStackException();
+        }
+        return array[top];
+    }
+
+    /**
+     * Gets the current size of the stack.
+     *
+     * @return The size of the stack.
+     */
+    public int size() {
+        return top + 1;
+    }
+
+    /**
+     * The main method demonstrates the usage of the generic stack implementation.
+     *
+     * @param args The command-line arguments (not used in this program).
+     */
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Enter the size of the stack");
+        GenericStack<Integer> stack = new GenericStack<>(sc.nextInt());
+
+        // Loop to accept values from the user and push them onto the stack
+        while (!stack.isFull()) {
+            System.out.print("Enter an integer to push onto the stack: ");
+            int value = sc.nextInt();
+            stack.push(value);
+        }
+
+        System.out.println("Top element of the stack: " + stack.peek());
+
+        System.out.println("Popping elements from the stack:");
+        while (!stack.isEmpty()) {
+            System.out.println("Popped: " + stack.pop());
+        }
+    }
+}
