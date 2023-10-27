@@ -1,32 +1,35 @@
-/**
- * This program simulates a print queue for a printer using a queue data structure.
- */
 import java.util.LinkedList;
 import java.util.Queue;
 
-class PrintJob {
-    private String document;
-
-    /**
-     * Constructs a new print job with the specified document.
-     *
-     * @param document The name of the document to be printed.
-     */
-    public PrintJob(String document) {
-        this.document = document;
-    }
-
-    /**
-     * Gets the name of the document to be printed.
-     *
-     * @return The document name.
-     */
-    public String getDocument() {
-        return document;
-    }
-}
-
+/**
+ * This program simulates a print queue for a printer using a queue data structure.
+ */
 public class PrintQueueSimulation {
+    /**
+     * Represents a print job with a document to be printed.
+     */
+    static class PrintJob {
+        private String document;
+
+        /**
+         * Constructs a new print job with the specified document.
+         *
+         * @param document The name of the document to be printed.
+         */
+        public PrintJob(String document) {
+            this.document = document;
+        }
+
+        /**
+         * Gets the name of the document to be printed.
+         *
+         * @return The document name.
+         */
+        public String getDocument() {
+            return document;
+        }
+    }
+
     public static void main(String[] args) {
         Queue<PrintJob> printQueue = new LinkedList<>();
 
