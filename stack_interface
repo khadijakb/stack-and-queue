@@ -1,0 +1,8 @@
+ublic interface stackinterface<T> {
+    boolean isEmpty();
+    boolean isFull();
+    void push(T item);
+    T pop();
+    T peek();
+    
+}
