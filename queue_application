@@ -1,0 +1,60 @@
+/**
+ * This program simulates a print queue for a printer using a queue data structure.
+ */
+import java.util.LinkedList;
+import java.util.Queue;
+
+class PrintJob {
+    private String document;
+
+    /**
+     * Constructs a new print job with the specified document.
+     *
+     * @param document The name of the document to be printed.
+     */
+    public PrintJob(String document) {
+        this.document = document;
+    }
+
+    /**
+     * Gets the name of the document to be printed.
+     *
+     * @return The document name.
+     */
+    public String getDocument() {
+        return document;
+    }
+}
+
+public class PrintQueueSimulation {
+    public static void main(String[] args) {
+        Queue<PrintJob> printQueue = new LinkedList<>();
+
+        // Add print jobs to the queue
+        printQueue.add(new PrintJob("Document1.pdf"));
+        printQueue.add(new PrintJob("Document2.doc"));
+        printQueue.add(new PrintJob("Document3.txt"));
+
+        System.out.println("Print Queue Contents:");
+
+        for (PrintJob job : printQueue) {
+            System.out.println("Printing: " + job.getDocument());
+        }
+
+        System.out.println("\nPrinting in Progress:");
+
+        while (!printQueue.isEmpty()) {
+            PrintJob currentJob = printQueue.poll();
+            System.out.println("Printing: " + currentJob.getDocument());
+            // Simulate printing by introducing a delay
+            try {
+                Thread.sleep(1000); // Sleep for 1 second to simulate printing
+            } catch (InterruptedException e) {
+                Thread.currentThread().interrupt();
+            }
+            System.out.println("Printed: " + currentJob.getDocument());
+        }
+
+        System.out.println("Print Queue is Empty.");
+    }
+}
